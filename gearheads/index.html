@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GearHeads - Car Community & Dealership</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #e63946;
+            --secondary-color: #6ca0dc;
+            --dark-color: #0d0d0d;
+            --text-light: #f1f1f1;
+
+            --card-bg: rgba(15, 15, 15, 0.65);
+            --card-bg-hero: rgba(0, 0, 0, 0.55);
+            --navbar-bg: rgba(0, 0, 0, 0.75);
+        }
+
+        /* Background */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: url('images/johannes-giez-VOsy-vH3V2c-unsplash.jpg') center/cover fixed;
+            color: var(--text-light);
+        }
+
+        /* Navbar */
+        .navbar {
+            background-color: var(--navbar-bg) !important;
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link {
+            position: relative;
+            padding-bottom: 5px;
+            color: var(--text-light) !important;
+            transition: 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--primary-color) !important;
+            transform: scale(1.07);
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -1px;
+            height: 2px;
+            width: 0%;
+            background: var(--primary-color);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero */
+        .hero-section {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            background: var(--card-bg-hero);
+            backdrop-filter: blur(10px);
+            border-radius: 14px;
+            padding: 3rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.7);
+        }
+
+        /* Transparent Sections */
+        .transparent-section,
+        .car-card,
+        .event-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(10px);
+            border-radius: 14px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.6);
+        }
+
+        /* Card Clipping for Rounded Images */
+        .car-card,
+        .event-card {
+            overflow: hidden;
+        }
+
+        /* Images */
+        .car-card img,
+        .event-card img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        /* Titles */
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--primary-color);
+            display: inline-block;
+            margin-bottom: 2rem;
+        }
+
+        /* Buttons */
+        .btn-primary {
+            background: var(--primary-color);
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background: #c1121f;
+        }
+
+        .btn-outline-dark {
+            border-color: var(--text-light);
+            color: var(--text-light);
+        }
+
+        .btn-outline-dark:hover {
+            background: var(--text-light);
+            color: var(--dark-color);
+        }
+
+        /* Footer */
+        footer {
+            background: black;
+            color: white;
+            padding: 3rem 0;
+        }
+
+        .social-icons a {
+            color: white;
+            margin-right: 15px;
+            font-size: 1.5rem;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--primary-color);
+        }
+    </style>
+</head>
+
+<body data-bs-spy="scroll" data-bs-target="#navbarNav" data-bs-offset="100">
+
+    <!-- NAVIGATION -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <i class="fas fa-car me-2"></i>GearHeads
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#inventory">Inventory</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#events">Events</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#community">Community</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="display-3 fw-bold mb-4">Welcome to <span class="text-primary">GearHeads</span></h1>
+                <p class="lead mb-4">Premium Cars • Real Enthusiasts • Powerful Community</p>
+
+                <div class="d-flex justify-content-center gap-3 flex-wrap">
+                    <a href="#inventory" class="btn btn-primary btn-lg">Browse Inventory</a>
+                    <a href="#events" class="btn btn-outline-dark btn-lg">Upcoming Events</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="transparent-section">
+                <h2 class="section-title">About GearHeads</h2>
+
+                <div class="row">
+                    <div class="col-lg-6 mb-4">
+                        <p>GearHeads is a hub for automotive excellence...</p>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-primary"></i> Premium selection</li>
+                            <li><i class="fas fa-check text-primary"></i> Active community</li>
+                            <li><i class="fas fa-check text-primary"></i> Regular events</li>
+                        </ul>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="card car-card">
+                            <img src="images/nicolas-orellana-mUfSY3a0usg-unsplash.jpg" alt="Our Showroom">
+                            <div class="card-body">
+                                <h5 class="card-title">Our Showroom</h5>
+                                <p>Visit our collection of classics and supercars.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- INVENTORY SECTION -->
+    <section id="inventory" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Featured Inventory</h2>
+
+            <div class="row g-4">
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card car-card">
+                        <img src="images/pexels-garvin-st-villier-719266-3311574.jpg" alt="">
+                        <div class="card-body">
+                            <h5>2023 Sports Coupe</h5>
+                            <p>High performance. Premium design.</p>
+                            <span class="fw-bold text-primary">$45,999</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card car-card">
+                        <img src="images/pexels-pixabay-164654.jpg" alt="">
+                        <div class="card-body">
+                            <h5>Classic Muscle Car</h5>
+                            <p>Fully restored with modern upgrades.</p>
+                            <span class="fw-bold text-primary">$62,500</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="card car-card">
+                        <img src="images/pexels-mikebirdy-1335077.jpg" alt="">
+                        <div class="card-body">
+                            <h5>Luxury SUV</h5>
+                            <p>Advanced tech. Superior comfort.</p>
+                            <span class="fw-bold text-primary">$78,200</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+
+    <!-- EVENTS SECTION -->
+    <section id="events" class="py-5">
+        <div class="container">
+            <div class="transparent-section">
+                <h2 class="section-title text-center">Upcoming Events</h2>
+
+                <div class="row g-4">
+
+                    <div class="col-lg-4">
+                        <div class="card event-card">
+                            <img src="images/clem-onojeghuo-bR4lTpjKW2o-unsplash.jpg">
+                            <div class="card-body">
+                                <h5>Annual Car Show</h5>
+                                <p>June 15, 2023 • Downtown Center</p>
+                                <a href="#contact" class="btn btn-primary">Register</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="card event-card">
+                            <img src="images/cook-aynne-5fKHZg4uyRs-unsplash.jpg">
+                            <div class="card-body">
+                                <h5>Track Day</h5>
+                                <p>July 8, 2023 • Raceway</p>
+                                <a href="#contact" class="btn btn-primary">Register</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="card event-card">
+                            <img src="images/jamie-dacus-HPcvR6olL9Y-unsplash.jpg">
+                            <div class="card-body">
+                                <h5>Tuning Workshop</h5>
+                                <p>Aug 12, 2023 • GH Garage</p>
+                                <a href="#contact" class="btn btn-primary">Register</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMUNITY SECTION -->
+    <section id="community" class="py-5">
+        <div class="container">
+            <h2 class="section-title text-center">Join Our Community</h2>
+
+            <div class="row">
+                <div class="col-lg-6 mb-4">
+                    <div class="transparent-section">
+                        <h3>Connect & Belong</h3>
+                        <ul class="list-unstyled">
+                            <li><i class="fas fa-check text-primary"></i> Monthly Meets</li>
+                            <li><i class="fas fa-check text-primary"></i> Member Discounts</li>
+                            <li><i class="fas fa-check text-primary"></i> DIY Workshops</li>
+                        </ul>
+
+                        <a href="#contact" class="btn btn-primary me-3">Join Now</a>
+                        <a class="btn btn-outline-dark">Gallery</a>
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="card car-card">
+                        <img src="images/clem-onojeghuo-bR4lTpjKW2o-unsplash.jpg">
+                        <div class="card-body">
+                            <h5>Monthly Meetup</h5>
+                            <p>First Saturday of every month.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="transparent-section">
+
+                <h2 class="section-title text-center">Contact Us</h2>
+
+                <form class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label">First Name</label>
+                        <input class="form-control">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">Last Name</label>
+                        <input class="form-control">
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Email</label>
+                        <input class="form-control" type="email">
+                    </div>
+
+                    <div class="col-12">
+                        <label class="form-label">Message</label>
+                        <textarea rows="5" class="form-control"></textarea>
+                    </div>
+
+                    <div class="text-center">
+                        <button class="btn btn-primary btn-lg mt-3">Send Message</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="container">
+
+            <div class="row">
+
+                <div class="col-lg-4 mb-4">
+                    <h4><i class="fas fa-car"></i> GearHeads</h4>
+                    <p>Premium cars, powerful community.</p>
+                    <div class="social-icons">
+                        <a><i class="fab fa-facebook"></i></a>
+                        <a><i class="fab fa-twitter"></i></a>
+                        <a><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="#home" class="text-light">Home</a></li>
+                        <li><a href="#inventory" class="text-light">Inventory</a></li>
+                        <li><a href="#community" class="text-light">Community</a></li>
+                    </ul>
+                </div>
+
+                <div class="col-lg-4 mb-4">
+                    <h5>Newsletter</h5>
+                    <p>Get updates on events & new arrivals.</p>
+                    <div class="input-group">
+                        <input class="form-control" placeholder="Your email">
+                        <button class="btn btn-primary">Subscribe</button>
+                    </div>
+                </div>
+
+            </div>
+
+            <hr>
+            <p class="text-center">&copy; 2023 GearHeads. All Rights Reserved.</p>
+
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jumanji Wildlife Park | Safari Adventure</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --dark-brown: #2c2416;
+            --earth-brown: #4a3c2a;
+            --sand: #8a7b69;
+            --forest-green: #1a2f1a;
+            --accent-gold: #d4af37;
+            --light-text: #e8e1d5;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--dark-brown);
+            color: var(--light-text);
+            line-height: 1.6;
+        }
+        
+        /* Header & Navigation */
+        header {
+            background-color: rgba(26, 47, 26, 0.9);
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--accent-gold);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--light-text);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent-gold);
+        }
+        
+        /* Hero Section with Background Image */
+        .hero {
+            height: 100vh;
+            background: 
+                linear-gradient(rgba(44, 36, 22, 0.7), rgba(44, 36, 22, 0.7)),
+                /* REPLACE THIS URL WITH YOUR BACKGROUND IMAGE */
+                url('images/geranimo-yKiLWMWquKE-unsplash.jpg') center/cover no-repeat;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+        
+        .hero-content h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            color: var(--accent-gold);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-gold);
+            color: var(--dark-brown);
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: 2px solid var(--accent-gold);
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: var(--accent-gold);
+        }
+        
+        /* About Section */
+        .section {
+            padding: 5rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--accent-gold);
+            font-size: 2.5rem;
+        }
+        
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .about-image {
+            flex: 1;
+            height: 400px;
+            background-color: var(--earth-brown);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        /* Animals Section */
+        .animals {
+            background-color: var(--forest-green);
+        }
+        
+        .animal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .animal-card {
+            background-color: var(--earth-brown);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        
+        .animal-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .animal-image {
+            height: 250px;
+            overflow: hidden;
+        }
+        
+        .animal-info {
+            padding: 1.5rem;
+        }
+        
+        .animal-info h3 {
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Experiences Section */
+        .experience-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .experience-card {
+            background-color: var(--earth-brown);
+            border-radius: 10px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .experience-card:hover {
+            background-color: var(--forest-green);
+        }
+        
+        .experience-icon {
+            font-size: 3rem;
+            color: var(--accent-gold);
+            margin-bottom: 1rem;
+        }
+        
+        /* Visit Section */
+        .visit {
+            background-color: var(--forest-green);
+        }
+        
+        .visit-content {
+            display: flex;
+            gap: 3rem;
+        }
+        
+        .visit-info, .visit-form {
+            flex: 1;
+        }
+        
+        .info-item {
+            margin-bottom: 1.5rem;
+        }
+        
+        .info-item h3 {
+            color: var(--accent-gold);
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 5px;
+            border: 1px solid var(--sand);
+            background-color: var(--dark-brown);
+            color: var(--light-text);
+        }
+        
+        /* Gallery Section */
+        .gallery {
+            padding: 5rem 0;
+            background-color: var(--forest-green);
+        }
+        
+        .gallery-filters {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .filter-btn {
+            background-color: var(--earth-brown);
+            color: var(--light-text);
+            border: none;
+            padding: 0.5rem 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background-color: var(--accent-gold);
+            color: var(--dark-brown);
+        }
+        
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .gallery-item {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            height: 250px;
+            transition: transform 0.3s;
+        }
+        
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+        
+        .gallery-item.large {
+            grid-column: span 2;
+            grid-row: span 2;
+            height: 100%;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark-brown);
+            padding: 3rem 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+        
+        .social-links a {
+            color: var(--light-text);
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: var(--accent-gold);
+        }
+        
+        .copyright {
+            color: var(--sand);
+            font-size: 0.9rem;
+        }
+        
+        /* Page Content */
+        .page-content {
+            padding-top: 80px;
+            min-height: 100vh;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .about-content, .visit-content {
+                flex-direction: column;
+            }
+            
+            .gallery-item.large {
+                grid-column: span 1;
+                grid-row: span 1;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#" class="logo">JUMANJI<span>WILDLIFE</span></a>
+            <ul class="nav-links">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#animals" class="nav-link">Animals</a></li>
+                <li><a href="#experiences" class="nav-link">Experiences</a></li>
+                <li><a href="#gallery" class="nav-link">Gallery</a></li>
+                <li><a href="#visit" class="nav-link">Visit</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Home Page Content -->
+    <div id="home-page">
+        <!-- Hero Section with Background Image -->
+        <section id="home" class="hero">
+            <div class="container hero-content">
+                <h1>JUMANJI WILDLIFE PARK</h1>
+                <p>Embark on an unforgettable safari adventure through untamed wilderness</p>
+                <a href="#visit" class="btn">Plan Your Visit</a>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section">
+            <div class="container">
+                <h2 class="section-title">About Jumanji</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Nestled in the heart of an ancient wilderness, Jumanji Wildlife Park spans over 5,000 acres of diverse ecosystems. Our park is dedicated to conservation, education, and providing unforgettable encounters with some of the world's most magnificent creatures.</p>
+                        <p>Founded in 1995, Jumanji has become a sanctuary for endangered species and a leader in wildlife preservation. Our expert guides will take you on a journey through savannahs, rainforests, and wetlands, where you'll witness animals in habitats that closely mirror their natural environments.</p>
+                        <p>At Jumanji, we believe in the power of connection - between humans and the natural world, and between species and their ecosystems. Every visit supports our conservation efforts and helps protect these incredible animals for generations to come.</p>
+                    </div>
+                    <div class="about-image">
+                    <img src="images/lodge-4024129_1920.jpg" alt="About Jumanji Wildlife Park" style="width:100%; height:100%; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Animals Section -->
+        <section id="animals" class="section animals">
+            <div class="container">
+                <h2 class="section-title">Meet Our Wildlife</h2>
+                <div class="animal-grid">
+                    <div class="animal-card">
+                        <div class="animal-image">
+                            <img src="images/male-lion-3997170.jpg" alt="African Lions" style="width:100%; height:100%; object-fit: cover;">
+                        </div>
+                        <div class="animal-info">
+                            <h3>African Lions</h3>
+                            <p>Observe our majestic pride of African lions in their expansive savannah habitat. These powerful predators are most active during our sunrise and sunset safari tours.</p>
+                        </div>
+                    </div>
+                    <div class="animal-card">
+                        <div class="animal-image">
+                            <img src="images/elephant-4120822_1920.jpg" alt="African Elephants" style="width:100%; height:100%; object-fit: cover;">
+                        </div>
+                        <div class="animal-info">
+                            <h3>African Elephants</h3>
+                            <p>Witness the gentle giants of Jumanji as they roam our specially designed elephant plains. Our herd includes several multi-generational families.</p>
+                        </div>
+                    </div>
+                    <div class="animal-card">
+                        <div class="animal-image">
+                    <img src="images/gorilla-4547188.jpg" alt="Mountain Gorillas" style="width:100%; height:100%; object-fit: cover;">
+                        </div>
+                        <div class="animal-info">
+                            <h3>Mountain Gorillas</h3>
+                            <p>Visit our misty mountain habitat where our family of critically endangered mountain gorillas resides. This immersive experience supports gorilla conservation worldwide.</p>
+                        </div>
+                    </div>
+                    <div class="animal-card">
+                        <div class="animal-image">
+                    <img src="images/animal-4004844.jpg" alt="Bengal Tigers" style="width:100%; height:100%; object-fit: cover;">
+                        </div>
+                        <div class="animal-info">
+                            <h3>Bengal Tigers</h3>
+                            <p>Marvel at the stunning beauty of our Bengal tigers in their forested enclosure. These elusive cats are part of an international breeding program for endangered species.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experiences Section -->
+        <section id="experiences" class="section">
+            <div class="container">
+                <h2 class="section-title">Unique Experiences</h2>
+                <div class="experience-cards">
+                    <div class="experience-card">
+                        <div class="experience-icon">
+                            <i class="fas fa-car"></i>
+                        </div>
+                        <h3>Safari Adventure</h3>
+                        <p>Join our expert guides on an open-air vehicle tour through our expansive savannah, where you'll encounter giraffes, zebras, antelopes, and predators in their naturalistic habitats.</p>
+                    </div>
+                    <div class="experience-card">
+                        <div class="experience-icon">
+                            <i class="fas fa-hiking"></i>
+                        </div>
+                        <h3>Jungle Trek</h3>
+                        <p>Explore our rainforest habitat on foot with an experienced naturalist. Discover exotic birds, primates, and lush vegetation as you navigate elevated walkways through the canopy.</p>
+                    </div>
+                    <div class="experience-card">
+                        <div class="experience-icon">
+                            <i class="fas fa-campground"></i>
+                        </div>
+                        <h3>Night Safari</h3>
+                        <p>Experience the park after dark on our special night safari. Witness nocturnal behaviors of our animals and enjoy a traditional campfire dinner under the stars.</p>
+                    </div>
+                    <div class="experience-card">
+                        <div class="experience-icon">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <h3>Keeper for a Day</h3>
+                        <p>Get behind-the-scenes access and assist our animal care team with daily routines. This exclusive program offers intimate encounters with some of our most popular residents.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Preview Section -->
+        <section id="gallery-preview" class="section">
+            <div class="container">
+                <h2 class="section-title">Wildlife Gallery</h2>
+                <div class="gallery-grid">
+                    <div class="gallery-item">
+                        <img src="images/sunguk-kim-tIfrzHxhPYQ-unsplash.jpg" alt="Lion Close-up" style="width:100%; height:100%; object-fit: cover;">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/redcharlie-xtvo0ffGKlI-unsplash.jpg" alt="Elephant Family" style="width:100%; height:100%; object-fit: cover;">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/scott-carroll-favQn8WgRyk-unsplash.jpg" alt="Safari Vehicle" style="width:100%; height:100%; object-fit: cover;">
+                    </div>
+                    <div class="gallery-item">
+                        <img src="images/africa-1170101.jpg" alt="Bird Aviary" style="width:100%; height:100%; object-fit: cover;">
+                    </div>
+                </div>
+                <div style="text-align: center; margin-top: 2rem;">
+                    <a href="#gallery" class="btn">View Full Gallery</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Visit Section -->
+        <section id="visit" class="section visit">
+            <div class="container">
+                <h2 class="section-title">Plan Your Visit</h2>
+                <div class="visit-content">
+                    <div class="visit-info">
+                        <div class="info-item">
+                            <h3>Hours</h3>
+                            <p>Open daily 9:00 AM - 6:00 PM</p>
+                            <p>Last entry at 4:00 PM</p>
+                        </div>
+                        <div class="info-item">
+                            <h3>Location</h3>
+                            <p>Jumanji Wildlife Park</p>
+                            <p>123 Wilderness Trail</p>
+                            <p>Forest Hills, JH 54321</p>
+                        </div>
+                        <div class="info-item">
+                            <h3>Contact</h3>
+                            <p>Phone: (555) 123-JUNGLE</p>
+                            <p>Email: info@jumanjiwildlife.com</p>
+                        </div>
+                        <div class="info-item">
+                            <h3>Admission</h3>
+                            <p>Adults: $45 | Children (3-12): $30</p>
+                            <p>Seniors (65+): $35</p>
+                            <p>Children under 3: Free</p>
+                        </div>
+                    </div>
+                    <div class="visit-form">
+                        <h3>Get in Touch</h3>
+                        <form>
+                            <div class="form-group">
+                                <label for="name">Name</label>
+                                <input type="text" id="name" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message">Message</label>
+                                <textarea id="message" class="form-control" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Gallery Page Content -->
+    <div id="gallery-page" class="page-content" style="display: none;">
+        <section class="gallery">
+            <div class="container">
+                <h2 class="section-title">Wildlife Gallery</h2>
+                <p style="text-align: center; margin-bottom: 2rem;">Explore stunning photographs from Jumanji Wildlife Park</p>
+                
+                <div class="gallery-filters">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="animals">Animals</button>
+                    <button class="filter-btn" data-filter="safari">Safari</button>
+                    <button class="filter-btn" data-filter="landscape">Landscape</button>
+                    <button class="filter-btn" data-filter="visitors">Visitor Experiences</button>
+                </div>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-item large" data-category="animals">
+                        <img src="images/sunguk-kim-tIfrzHxhPYQ-unsplash.jpg" alt="Lion Close-up" style="width:100%; height:100%; object-fit: cover;">
+                    </div>
+                    <div class="gallery-item" data-category="animals">
+                        <img src ="images/redcharlie-xtvo0ffGKlI-unsplash.jpg" alt="Elephant Family" style="width:100%; height:100%; object-fit: cover;">
+                    </div>
+                    <div class="gallery-item" data-category="safari">
+                        <img src="images/scott-carroll-favQn8WgRyk-unsplash.jpg" alt="Safari Vehicle" style="width:100%; height:100%; object-fit: cover;">
+                    </div>
+                    <div class="gallery-item" data-category="landscape">
+                        <img src="images/africa-1170101.jpg" alt="Bird Aviary" style="width:100%; height:100%; object-fit: cover;">
+                    </div>
+                    <div class="gallery-item" data-category="animals">
+                        <img src="images/zebra-1170177.jpg" alt="Mountain Gorilla" style="width:100%; height:100%; object-fit: cover;">
+                    </div>
+                    <div class="gallery-item" data-category="visitors">
+                        <img src="images/the-park-2863730.jpg" alt="Visitors on Safari" style="width:100%; height:100%; object-fit: cover;">
+                    </div>
+                    <div class="gallery-item" data-category="animals">
+                        <img src="images/zebras-4258909.jpg" alt="Bengal Tiger" style="width:100%; height:100%; object-fit: cover;">
+                    </div>
+                    <div class="gallery-item large" data-category="landscape">
+                        <img src="images/trees-7646226.jpg" alt="Jumanji Landscape" style="width:100%; height:100%; object-fit: cover;">
+                    </div>
+                    <div class="gallery-item" data-category="animals">
+                        <img src="images/gwen-weustink-I3C1sSXj1i8-unsplash.jpg" alt="Exotic Bird" style="width:100%; height:100%; object-fit: cover;">
+                    </div>
+                    <div class="gallery-item" data-category="safari">
+                        <img src="images/sunset-3840101_1920.jpg" alt="Safari Guide" style="width:100%; height:100%; object-fit: cover;">    
+                    </div>
+                    <div class="gallery-item" data-category="animals">
+                     <img src="images/bird-7591747.jpg" alt="Monkey in Tree" style="width:100%; height:100%; object-fit: cover;">
+                    </div>
+                    <div class="gallery-item" data-category="visitors">
+                        <img src="images/picnic-2790438_1920.jpg" alt="Visitors Enjoying Safari" style="width:100%; height:100%; object-fit: cover;">
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 3rem;">
+                    <a href="#home" class="btn nav-link">Back to Home</a>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <a href="#" class="logo">JUMANJI<span>WILDLIFE</span></a>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+            </div>
+            <p class="copyright">&copy; 2023 Jumanji Wildlife Park. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listeners to all navigation links
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const target = this.getAttribute('href').substring(1); // Remove the #
+                    
+                    if (target === 'gallery') {
+                        showGalleryPage();
+                    } else {
+                        // For all other links, show home page and scroll to section
+                        showHomePage();
+                        
+                        // Use setTimeout to ensure the page is visible before scrolling
+                        setTimeout(() => {
+                            const element = document.getElementById(target);
+                            if (element) {
+                                element.scrollIntoView({ behavior: 'smooth' });
+                            }
+                        }, 100);
+                    }
+                });
+            });
+            
+            // Handle the "Back to Home" button in gallery
+            document.querySelector('a[href="#home"]').addEventListener('click', function(e) {
+                e.preventDefault();
+                showHomePage();
+            });
+            
+            // Gallery filter functionality
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const galleryItems = document.querySelectorAll('.gallery-item');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Update active button
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    button.classList.add('active');
+                    
+                    // Filter items
+                    const filter = button.getAttribute('data-filter');
+                    
+                    galleryItems.forEach(item => {
+                        if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                            item.style.display = 'block';
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+        
+        // Header background change on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.backgroundColor = 'rgba(26, 47, 26, 0.95)';
+            } else {
+                header.style.backgroundColor = 'rgba(26, 47, 26, 0.9)';
+            }
+        });
+        
+        // Show gallery page
+        function showGalleryPage() {
+            document.getElementById('home-page').style.display = 'none';
+            document.getElementById('gallery-page').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+        
+        // Show home page
+        function showHomePage() {
+            document.getElementById('gallery-page').style.display = 'none';
+            document.getElementById('home-page').style.display = 'block';
+            window.scrollTo(0, 0);
+        }
+    </script>
+</body>
+</html>

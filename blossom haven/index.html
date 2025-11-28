@@ -1,0 +1,1105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blossom Haven Gardens</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --peach: #ffd8c9;
+            --light-peach: #fff0eb;
+            --pink: #ffb6c1;
+            --dark-pink: #ff8da1;
+            --accent: #a8e6cf;
+            --text: #5a4a42;
+            --light-text: #8a736c;
+        }
+
+        body {
+            background-color: var(--light-peach);
+            color: var(--text);
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, rgba(255, 216, 201, 0.9), rgba(255, 182, 193, 0.9));
+            padding: 1rem 2rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            font-size: 2rem;
+            color: var(--text);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            color: var(--text);
+            font-weight: 600;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            background-color: var(--dark-pink);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), 
+                        url('images/amy-humphries-S5wUMrXdq1M-unsplash.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 2rem;
+            margin-top: 80px;
+            color: white;
+        }
+
+        .hero-content {
+            max-width: 800px;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--dark-pink);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: var(--text);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--text);
+            position: relative;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--dark-pink);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about {
+            background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
+                        url('YOUR_ABOUT_BACKGROUND_URL_HERE');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            border-radius: 20px;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-image {
+            background-color: var(--peach);
+            height: 400px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--light-text);
+        }
+
+        /* Services Section */
+        .services {
+            background-color: var(--peach);
+            border-radius: 20px;
+            padding: 4rem 2rem;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .service-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background-color: var(--light-peach);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+        }
+
+        .service-icon i {
+            font-size: 2.5rem;
+            color: var(--dark-pink);
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--text);
+        }
+
+        .service-card p {
+            color: var(--light-text);
+        }
+
+        /* Plants Section */
+        .plants {
+            background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.9)), 
+                        url('YOUR_PLANTS_BACKGROUND_URL_HERE');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+        }
+
+        .plants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .plant-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .plant-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .plant-image {
+            height: 200px;
+            background-color: var(--peach);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .plant-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .plant-card:hover .plant-image img {
+            transform: scale(1.1);
+        }
+
+        .plant-info {
+            padding: 1.5rem;
+        }
+
+        .plant-info h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .plant-info p {
+            color: var(--light-text);
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .price {
+            font-weight: 600;
+            color: var(--dark-pink);
+            font-size: 1.2rem;
+        }
+
+        /* Events Section */
+        .events {
+            background: linear-gradient(rgba(255, 216, 201, 0.9), rgba(255, 182, 193, 0.9)), 
+                        url('YOUR_EVENTS_BACKGROUND_URL_HERE');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            padding: 4rem 2rem;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .event-card {
+            background-color: white;
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .event-image {
+            height: 200px;
+            background-color: var(--light-peach);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .event-date {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background-color: var(--dark-pink);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 10px;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .event-info {
+            padding: 1.5rem;
+        }
+
+        .event-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--text);
+        }
+
+        .event-info p {
+            color: var(--light-text);
+            margin-bottom: 1rem;
+        }
+
+        .event-details {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+        }
+
+        .event-details span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .event-details i {
+            color: var(--dark-pink);
+        }
+
+        /* Reservation Section */
+        .reservation {
+            background: linear-gradient(rgba(255, 216, 201, 0.85), rgba(255, 182, 193, 0.85)), 
+                        url('YOUR_RESERVATION_BACKGROUND_URL_HERE');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            padding: 4rem 2rem;
+        }
+
+        .reservation-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .reservation-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .reservation-info p {
+            margin-bottom: 1.5rem;
+            color: var(--light-text);
+        }
+
+        .reservation-features {
+            margin-top: 2rem;
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item i {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-peach);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--dark-pink);
+        }
+
+        .reservation-form {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: var(--text);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid var(--peach);
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--dark-pink);
+            box-shadow: 0 0 0 3px rgba(255, 141, 161, 0.2);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(rgba(255, 216, 201, 0.9), rgba(255, 182, 193, 0.9)), 
+                        url('YOUR_CONTACT_BACKGROUND_URL_HERE');
+            background-size: cover;
+            background-position: center;
+            border-radius: 20px;
+            padding: 4rem 2rem;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        .contact-item i {
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-peach);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            color: var(--dark-pink);
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: none;
+            border-radius: 10px;
+            background-color: white;
+            font-size: 1rem;
+        }
+
+        .contact-form textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--pink), var(--dark-pink));
+            color: white;
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: white;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-column a {
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-column a:hover {
+            color: var(--text);
+            padding-left: 5px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: white;
+            color: var(--dark-pink);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            nav ul {
+                gap: 1rem;
+            }
+
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+
+            .about-content,
+            .contact-container,
+            .reservation-container {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <i class="fas fa-seedling"></i>
+                <h1>Blossom Haven</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#plants">Plants</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#reservation">Reservations</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>Create Your Dream Garden</h2>
+            <p>Discover the beauty of nature with our premium selection of plants, flowers, and gardening services. Transform your space into a blooming paradise.</p>
+            <a href="#plants" class="btn">Explore Our Plants</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="section-title">
+            <h2>About Us</h2>
+            <p>Learn more about our passion for gardening</p>
+        </div>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="images/pexels-quang-nguyen-vinh-222549-2134798.jpg" alt="Gardeners working">
+            </div>
+            <div class="about-text">
+                <h3>Our Gardening Story</h3>
+                <p>Founded in 2010, Blossom Haven has been helping garden enthusiasts create beautiful outdoor spaces. Our team of expert gardeners and horticulturists are passionate about bringing nature's beauty to your doorstep.</p>
+                <p>We believe that everyone deserves a little piece of paradise, whether you have a sprawling backyard or a cozy balcony. Our mission is to make gardening accessible, enjoyable, and rewarding for everyone.</p>
+                <a href="#contact" class="btn">Get In Touch</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="services">
+        <div class="section-title">
+            <h2>Our Services</h2>
+            <p>How we can help your garden flourish</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-tree"></i>
+                </div>
+                <h3>Garden Design</h3>
+                <p>Our expert designers will create a personalized garden plan that suits your space, style, and budget.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-tint"></i>
+                </div>
+                <h3>Irrigation Systems</h3>
+                <p>Efficient watering solutions to keep your plants healthy while conserving water and saving you time.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">
+                    <i class="fas fa-leaf"></i>
+                </div>
+                <h3>Plant Maintenance</h3>
+                <p>Regular care and maintenance services to ensure your garden stays vibrant and healthy all year round.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Plants Section -->
+    <section id="plants" class="plants">
+        <div class="section-title">
+            <h2>Featured Plants</h2>
+            <p>Discover our most popular plants</p>
+        </div>
+        <div class="plants-grid">
+            <div class="plant-card">
+                <div class="plant-image">
+                    <img src="images/pexels-natalie-bond-320378-3782745.jpg" alt="Pink Roses">
+                </div>
+                <div class="plant-info">
+                    <h3>Pink Roses</h3>
+                    <p>Beautiful fragrant roses that will add elegance to any garden. Perfect for borders or as cut flowers.</p>
+                    <div class="price">$24.99</div>
+                </div>
+            </div>
+            <div class="plant-card">
+                <div class="plant-image">
+                    <img src="images/pexels-anthony-2156384221-34865764.jpg" alt="Japanese Maple">
+                </div>
+                <div class="plant-info">
+                    <h3>Japanese Maple</h3>
+                    <p>Stunning ornamental tree with delicate foliage that changes color with the seasons.</p>
+                    <div class="price">$49.99</div>
+                </div>
+            </div>
+            <div class="plant-card">
+                <div class="plant-image">
+                    <img src="images/pexels-brett-sayles-1322185.jpg" alt="Sunflowers">
+                </div>
+                <div class="plant-info">
+                    <h3>Sunflowers</h3>
+                    <p>Bright and cheerful flowers that follow the sun. Easy to grow and perfect for beginners.</p>
+                    <div class="price">$12.99</div>
+                </div>
+            </div>
+            <div class="plant-card">
+                <div class="plant-image">
+                    <img src="images/pexels-iriser-1381679.jpg" alt="Lavender">
+                </div>
+                <div class="plant-info">
+                    <h3>Lavender</h3>
+                    <p>Fragrant purple flowers that attract pollinators and can be used for crafts and cooking.</p>
+                    <div class="price">$18.99</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="events">
+        <div class="section-title">
+            <h2>Garden Events & Picnics</h2>
+            <p>Join us for special occasions in our beautiful gardens</p>
+        </div>
+        <div class="events-grid">
+            <div class="event-card">
+                <div class="event-image">
+                    <div class="event-date">June 15</div>
+                    <img src="images/pexels-nati-87264186-32677323.jpg" alt="Sunset Garden Party">
+                </div>
+                <div class="event-info">
+                    <h3>Sunset Garden Party</h3>
+                    <p>Enjoy an evening of music, wine, and garden delights as the sun sets over our beautiful blooms.</p>
+                    <div class="event-details">
+                        <span><i class="fas fa-clock"></i> 6:00 PM - 9:00 PM</span>
+                        <span><i class="fas fa-users"></i> Limited to 50 guests</span>
+                    </div>
+                    <a href="#reservation" class="btn">Reserve Spot</a>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-image">
+                    <div class="event-date">July 8</div>
+                    <img src="images/pexels-caio-mantovani-97605853-32179371.jpg" alt="Garden Picnic">
+                </div>
+                <div class="event-info">
+                    <h3>Garden Picnic Experience</h3>
+                    <p>Bring your loved ones for a curated picnic experience amidst our most beautiful garden settings.</p>
+                    <div class="event-details">
+                        <span><i class="fas fa-clock"></i> 11:00 AM - 3:00 PM</span>
+                        <span><i class="fas fa-users"></i> Groups of 2-6</span>
+                    </div>
+                    <a href="#reservation" class="btn">Book Picnic</a>
+                </div>
+            </div>
+            <div class="event-card">
+                <div class="event-image">
+                    <div class="event-date">August 22</div>
+                    <img src="images/pexels-shvetsa-5894067.jpg" alt="Botanical Workshop">
+                </div>
+                <div class="event-info">
+                    <h3>Botanical Workshop</h3>
+                    <p>Learn about plant care and propagation from our expert horticulturists in this hands-on workshop.</p>
+                    <div class="event-details">
+                        <span><i class="fas fa-clock"></i> 10:00 AM - 1:00 PM</span>
+                        <span><i class="fas fa-users"></i> 20 spots available</span>
+                    </div>
+                    <a href="#reservation" class="btn">Register Now</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reservation Section -->
+    <section id="reservation" class="reservation">
+        <div class="section-title">
+            <h2>Make a Reservation</h2>
+            <p>Book your garden experience today</p>
+        </div>
+        <div class="reservation-container">
+            <div class="reservation-info">
+                <h3>Plan Your Perfect Garden Day</h3>
+                <p>Whether you're looking for a romantic picnic, educational workshop, or simply a peaceful day surrounded by nature, we have the perfect setting for you.</p>
+                <p>Our garden spaces can accommodate individuals, couples, families, and small groups. We offer customizable packages to make your visit truly special.</p>
+                
+                <div class="reservation-features">
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Beautiful scenic locations</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Customizable picnic baskets available</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Private and semi-private areas</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-check-circle"></i>
+                        <span>Photography-friendly settings</span>
+                    </div>
+                </div>
+            </div>
+            <div class="reservation-form">
+                <form id="booking-form">
+                    <div class="form-group">
+                        <label for="reservation-type">Reservation Type</label>
+                        <select id="reservation-type" required>
+                            <option value="">Select an option</option>
+                            <option value="picnic">Garden Picnic</option>
+                            <option value="workshop">Botanical Workshop</option>
+                            <option value="event">Special Event</option>
+                            <option value="private">Private Garden Rental</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="date">Preferred Date</label>
+                            <input type="date" id="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="time">Preferred Time</label>
+                            <select id="time" required>
+                                <option value="">Select time</option>
+                                <option value="morning">Morning (9am-12pm)</option>
+                                <option value="afternoon">Afternoon (12pm-4pm)</option>
+                                <option value="evening">Evening (4pm-7pm)</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="guests">Number of Guests</label>
+                            <input type="number" id="guests" min="1" max="20" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="duration">Duration (hours)</label>
+                            <select id="duration" required>
+                                <option value="2">2 hours</option>
+                                <option value="3">3 hours</option>
+                                <option value="4">4 hours</option>
+                                <option value="full-day">Full Day</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Phone</label>
+                            <input type="tel" id="phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="special-requests">Special Requests</label>
+                        <textarea id="special-requests" placeholder="Any dietary restrictions, accessibility needs, or special arrangements..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn" style="width: 100%;">Submit Reservation</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+            <p>Get in touch for a free consultation</p>
+        </div>
+        <div class="contact-container">
+            <div class="contact-info">
+                <h3>Let's Talk About Your Garden</h3>
+                <div class="contact-details">
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <p>123 Garden Lane, Bloomington, CA 90210</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <p>(555) 123-4567</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <p>info@blossomhaven.com</p>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-clock"></i>
+                        <p>Mon - Fri: 9am - 6pm, Sat: 10am - 4pm</p>
+                    </div>
+                </div>
+            </div>
+            <div class="contact-form">
+                <form>
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <input type="text" placeholder="Subject">
+                    <textarea placeholder="Your Message" required></textarea>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Blossom Haven</h3>
+                <p>Creating beautiful gardens since 2010. We're passionate about helping you grow your perfect outdoor space.</p>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                </div>
+            </div>
+            <div class="footer-column">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Us</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#plants">Plants</a></li>
+                    <li><a href="#events">Events</a></li>
+                    <li><a href="#reservation">Reservations</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Services</h3>
+                <ul>
+                    <li><a href="#">Garden Design</a></li>
+                    <li><a href="#">Landscaping</a></li>
+                    <li><a href="#">Plant Maintenance</a></li>
+                    <li><a href="#">Irrigation Systems</a></li>
+                    <li><a href="#">Seasonal Planting</a></li>
+                    <li><a href="#">Garden Events</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h3>Newsletter</h3>
+                <p>Subscribe to get gardening tips and special offers.</p>
+                <form>
+                    <input type="email" placeholder="Your Email" style="width: 100%; padding: 0.8rem; border-radius: 30px; border: none; margin-top: 1rem;">
+                    <button type="submit" class="btn" style="margin-top: 1rem; width: 100%;">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2023 Blossom Haven Gardens. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission handling
+        document.getElementById('booking-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your reservation! We will contact you shortly to confirm your booking.');
+            this.reset();
+        });
+
+        // Set minimum date to today for reservation form
+        const today = new Date().toISOString().split('T')[0];
+        document.getElementById('date').setAttribute('min', today);
+    </script>
+</body>
+</html>
