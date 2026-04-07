@@ -1,0 +1,19 @@
+FoodFusion Recipe Card
+
+Dish: Classic Tomato Pasta
+Prep Time: 15 min
+Cook Time: 25 min
+Serves: 4
+
+Ingredients:
+- 400g pasta
+- 2 cups crushed tomatoes
+- 3 cloves garlic
+- 2 tbsp olive oil
+- Salt, pepper, basil
+
+Steps:
+1) Cook pasta until al dente.
+2) Saut? garlic in olive oil, add tomatoes.
+3) Simmer 10 minutes, season.
+4) Toss with pasta and serve.
