@@ -1,0 +1,301 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mediplus - Hospital Management System</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Login Container -->
+    <div id="loginContainer">
+        <div class="login-card">
+            <div class="login-header">
+                <h2><i class="fas fa-hospital"></i> Mediplus</h2>
+                <p>Hospital Management System</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="auth-tabs">
+                <button class="auth-tab active" id="loginTab" onclick="switchTab('login')">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+                <button class="auth-tab" id="registerTab" onclick="switchTab('register')">
+                    <i class="fas fa-user-plus"></i> Register
+                </button>
+            </div>
+
+            <!-- Login Form -->
+            <div class="login-body" id="loginForm_container">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="username">Email or Username</label>
+                        <input type="text" class="form-control" id="username" placeholder="Enter email or username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" class="form-control" id="password" placeholder="Enter password" required>
+                    </div>
+                    <button type="submit" class="btn-login">
+                        <i class="fas fa-sign-in-alt"></i> Login
+                    </button>
+                </form>
+                <div style="margin-top: 20px; text-align: center; font-size: 12px; color: #6c757d;">
+                    <p>Test Credentials:</p>
+                    <p><strong>Patient:</strong> john.doe@email.com / patient123</p>
+                    <p><strong>Doctor:</strong> sarah.johnson@mediplus.com / doctor123</p>
+                </div>
+            </div>
+
+            <!-- Register Form -->
+            <div class="login-body" id="registerForm_container" style="display: none;">
+                <form id="registerForm">
+                    <div class="form-group">
+                        <label for="reg_name">Full Name</label>
+                        <input type="text" class="form-control" id="reg_name" placeholder="Enter your full name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg_email">Email Address</label>
+                        <input type="email" class="form-control" id="reg_email" placeholder="Enter your email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg_username">Username</label>
+                        <input type="text" class="form-control" id="reg_username" placeholder="Choose a username" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg_phone">Phone Number (Optional)</label>
+                        <input type="tel" class="form-control" id="reg_phone" placeholder="+1234567890">
+                    </div>
+                    <div class="form-group">
+                        <label for="reg_role">Register As</label>
+                        <select class="form-control" id="reg_role" required>
+                            <option value="patient">Patient</option>
+                            <option value="doctor">Doctor</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg_password">Password</label>
+                        <input type="password" class="form-control" id="reg_password" placeholder="Choose a password (min 6 chars)" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="reg_confirm_password">Confirm Password</label>
+                        <input type="password" class="form-control" id="reg_confirm_password" placeholder="Repeat your password" required>
+                    </div>
+                    <button type="submit" class="btn-login" style="background: linear-gradient(135deg, #27ae60, #2ecc71);">
+                        <i class="fas fa-user-plus"></i> Create Account
+                    </button>
+                </form>
+                <div style="margin-top: 15px; text-align: center;">
+                    <p style="font-size: 13px; color: #6c757d;">Already have an account? 
+                        <a href="#" onclick="switchTab('login')" style="color: var(--secondary); font-weight: 600;">Login here</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Dashboard Container -->
+    <div id="dashboardContainer">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h3><i class="fas fa-hospital"></i> Mediplus</h3>
+            </div>
+            <div class="user-info">
+                <div class="avatar">
+                    <i class="fas fa-user"></i>
+                </div>
+                <h5 id="userName">User Name</h5>
+                <span class="badge bg-primary" id="userRole">Patient</span>
+            </div>
+            <ul class="sidebar-menu" id="sidebarMenu">
+                <!-- Menu items loaded dynamically based on role -->
+            </ul>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Overview Section -->
+            <div id="overviewSection">
+                <h2 style="color: white; margin-bottom: 20px;">Dashboard Overview</h2>
+                
+                <!-- Stats Cards -->
+                <div class="stats-container" id="statsContainer">
+                    <!-- Stats will be loaded here -->
+                </div>
+
+                <!-- Upcoming Appointments -->
+                <div class="appointments-card">
+                    <div class="card-header-custom">
+                        <h4><i class="fas fa-calendar-check"></i> Upcoming Appointments</h4>
+                        <button class="btn-book" onclick="showBookingModal()">
+                            <i class="fas fa-plus"></i> Book Appointment
+                        </button>
+                    </div>
+                    <div id="upcomingAppointments">
+                        <!-- Appointments will be loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Prescriptions Section -->
+            <div id="prescriptionsSection" style="display:none;">
+                <h2 style="color: white; margin-bottom: 20px;"><i class="fas fa-pills"></i> Prescriptions & Medical Records</h2>
+
+                <!-- Doctor: Complete Appointment Panel -->
+                <div id="completeAppointmentPanel" style="display:none;" class="appointments-card" style="margin-bottom:20px;">
+                    <div class="card-header-custom">
+                        <h4><i class="fas fa-stethoscope"></i> Complete Appointment</h4>
+                    </div>
+                    <form id="completeAppointmentForm">
+                        <div class="mb-3">
+                            <label class="form-label">Select Appointment to Complete</label>
+                            <select class="form-control" id="appointmentToComplete">
+                                <option value="">Select confirmed appointment...</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Diagnosis</label>
+                            <textarea class="form-control" id="diagnosisInput" rows="3" placeholder="Enter diagnosis details..."></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Prescription</label>
+                            <textarea class="form-control" id="prescriptionInput" rows="4" placeholder="Enter medications, dosage, instructions...&#10;e.g. Amoxicillin 500mg - 3x daily for 7 days"></textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Additional Notes</label>
+                            <textarea class="form-control" id="notesInput" rows="2" placeholder="Any additional notes or follow-up instructions..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-check-circle"></i> Complete Appointment & Save Prescription
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Prescription Records List -->
+                <div class="appointments-card">
+                    <div class="card-header-custom">
+                        <h4><i class="fas fa-file-medical"></i> Medical Records & Prescriptions</h4>
+                        <button class="btn-book" onclick="loadPrescriptions()">
+                            <i class="fas fa-sync"></i> Refresh
+                        </button>
+                    </div>
+                    <div id="prescriptionsList">
+                        <div class="empty-state">
+                            <i class="fas fa-pills"></i>
+                            <p>Loading prescriptions...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Doctors Section (Patients only) -->
+            <div id="doctorsSection" style="display:none;">
+                <h2 style="color: white; margin-bottom: 20px;"><i class="fas fa-user-md"></i> Our Doctors</h2>
+                <div class="appointments-card">
+                    <div class="card-header-custom">
+                        <h4><i class="fas fa-search"></i> Find a Doctor</h4>
+                    </div>
+                    <div class="mb-3">
+                        <select class="form-control" id="doctorDeptFilter" onchange="filterDoctorsSection()" style="max-width:300px;">
+                            <option value="">All Departments</option>
+                        </select>
+                    </div>
+                    <div id="doctorsList" style="display:grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap:20px; padding:10px 0;">
+                        <!-- Doctors loaded here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Patients Section (Doctors/Admins only) -->
+            <div id="patientsSection" style="display:none;">
+                <h2 style="color: white; margin-bottom: 20px;"><i class="fas fa-users"></i> My Patients</h2>
+                <div class="appointments-card">
+                    <div class="card-header-custom">
+                        <h4><i class="fas fa-users"></i> Patients with Appointments</h4>
+                        <span id="patientCount" style="background:#3498db;color:white;padding:4px 12px;border-radius:20px;font-size:13px;"></span>
+                    </div>
+                    <div id="patientsList">
+                        <div class="empty-state">
+                            <i class="fas fa-users"></i>
+                            <p>Loading patients...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Appointment Booking Modal -->
+    <div class="modal-overlay" id="appointmentModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-calendar-plus"></i> Book Appointment</h3>
+                <button class="btn-close" onclick="hideModal()">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="appointmentForm">
+                    <div class="mb-3">
+                        <label class="form-label">Department</label>
+                        <select class="form-control" id="department" required>
+                            <option value="">Select Department</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Doctor</label>
+                        <select class="form-control" id="doctorSelect" required>
+                            <option value="">Select Doctor</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Appointment Date</label>
+                        <input type="date" class="form-control" id="appointmentDate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Available Time Slots</label>
+                        <div id="timeSlots" class="time-slots-container">
+                            <p class="text-muted" style="grid-column: 1/-1;">Please select doctor and date first</p>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Reason for Visit (Optional)</label>
+                        <textarea class="form-control" id="appointmentReason" rows="3" placeholder="Briefly describe your symptoms..."></textarea>
+                    </div>
+                    <div style="display: flex; gap: 10px; justify-content: flex-end;">
+                        <button type="button" class="btn btn-secondary" onclick="hideModal()">Cancel</button>
+                        <button type="submit" class="btn btn-primary">Book Appointment</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Notification -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Socket.io -->
+    <script src="https://cdn.socket.io/4.6.0/socket.io.min.js"></script>
+
+    <!-- Application JavaScript -->
+    <script src="js/main.js"></script>
+
+</body>
+</html>
