@@ -1,0 +1,5 @@
+Renewable Energy: Solar Basics
+
+- Solar panels convert sunlight into electricity.
+- Inverters change DC to AC for home use.
+- Best practices: clean panels and optimal tilt.

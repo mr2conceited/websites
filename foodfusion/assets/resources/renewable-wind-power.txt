@@ -1,0 +1,5 @@
+Renewable Energy: Wind Power 101
+
+- Wind turbines convert kinetic energy to electricity.
+- Output depends on wind speed and turbine size.
+- Offshore wind is stronger and more consistent.
