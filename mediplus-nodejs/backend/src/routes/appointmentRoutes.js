@@ -27,15 +27,19 @@ router.get('/slots/available', appointmentController.getAvailableSlots);
 // Protected routes - All authenticated users
 router.use(authenticate);
 
-router.post('/', bookAppointmentValidation, appointmentController.bookAppointment);
-router.get('/', appointmentController.getAppointments);
+// Specific routes must come before :id parameter routes
 router.get('/upcoming', appointmentController.getUpcomingAppointments);
 router.get('/history', appointmentController.getAppointmentHistory);
 router.get('/stats', appointmentController.getAppointmentStats);
+
+// Generic routes
+router.post('/', bookAppointmentValidation, appointmentController.bookAppointment);
+router.get('/', appointmentController.getAppointments);
 router.get('/:id', appointmentController.getAppointmentById);
 router.put('/:id/cancel', appointmentController.cancelAppointment);
 
-// Doctor/Admin only routes
+// Doctor/Admin only routes - these must be before the generic /:id routes
+// But they're already after since they use different HTTP methods on different sub-paths
 router.put('/:id/confirm', authorize('doctor', 'admin'), appointmentController.confirmAppointment);
 router.put('/:id/complete', authorize('doctor'), completeAppointmentValidation, appointmentController.completeAppointment);
 

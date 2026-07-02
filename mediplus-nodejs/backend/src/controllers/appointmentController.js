@@ -148,8 +148,10 @@ const getUpcomingAppointments = asyncHandler(async (req, res) => {
 const getAppointmentHistory = asyncHandler(async (req, res) => {
   const { page = 1, limit = 10 } = req.query;
 
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
   const query = {
-    date: { $lt: new Date().setHours(0, 0, 0, 0) },
+    date: { $lt: today },
     status: { $in: ['completed', 'cancelled', 'no-show'] }
   };
 
@@ -383,7 +385,8 @@ const getAppointmentStats = asyncHandler(async (req, res) => {
     query.doctor = req.userId;
   }
 
-  const today = new Date().setHours(0, 0, 0, 0);
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
 
   const stats = {
     total: await Appointment.countDocuments(query),

@@ -10,13 +10,16 @@ router.get('/departments', userController.getDepartments);
 // Protected routes
 router.use(authenticate);
 
-router.get('/:id', userController.getUserById);
+// Specific routes must come before :id parameter routes
 router.post('/search', userController.searchUsers);
+router.get('/stats/overview', authorize('admin'), userController.getUserStats);
 
-// Admin only routes
+// Admin only routes - general routes
 router.get('/', authorize('admin'), userController.getAllUsers);
 router.put('/:id', authorize('admin'), userController.updateUser);
 router.delete('/:id', authorize('admin'), userController.deleteUser);
-router.get('/stats/overview', authorize('admin'), userController.getUserStats);
+
+// Generic :id route (must be last)
+router.get('/:id', userController.getUserById);
 
 module.exports = router;

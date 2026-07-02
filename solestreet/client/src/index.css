@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply min-h-screen bg-neutral-50 font-sans text-neutral-900 antialiased;
+}
+
+#root {
+  @apply min-h-screen;
+}
+
+.btn-primary {
+  @apply rounded-full bg-neutral-900 px-5 py-3 font-semibold text-white transition hover:bg-neutral-700 disabled:cursor-not-allowed disabled:opacity-50;
+}
+
+.btn-outline {
+  @apply rounded-full border border-neutral-900 px-5 py-3 font-semibold text-neutral-900 transition hover:bg-neutral-900 hover:text-white;
+}
+
+.input {
+  @apply w-full rounded-2xl border border-neutral-300 bg-white/80 px-3 py-3 text-sm shadow-sm outline-none transition focus:border-neutral-900 focus:ring-2 focus:ring-neutral-900/20;
+}
+
+.card {
+  @apply rounded-[1.5rem] border border-neutral-200 bg-white/80 shadow-sm backdrop-blur;
+}

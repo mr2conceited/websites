@@ -52,7 +52,9 @@ const appointmentSchema = new mongoose.Schema({
     validate: {
       validator: function(value) {
         // Date should not be in the past
-        return value >= new Date().setHours(0, 0, 0, 0);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        return value >= today;
       },
       message: 'Appointment date cannot be in the past'
     }
@@ -166,8 +168,10 @@ appointmentSchema.statics.getAvailableSlots = async function(doctorId, date) {
 
 // Static method to get upcoming appointments
 appointmentSchema.statics.getUpcoming = async function(userId, role, limit = 10) {
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
   const query = {
-    date: { $gte: new Date().setHours(0, 0, 0, 0) },
+    date: { $gte: today },
     status: { $in: ['pending', 'confirmed'] }
   };
 
