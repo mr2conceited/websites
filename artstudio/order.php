@@ -20,7 +20,7 @@ if ($name === '' || $address === '' || !filter_var($email, FILTER_VALIDATE_EMAIL
     exit;
 }
 
-$prices = ['A4' => 24, 'A3' => 34, 'A2' => 48, 'A1' => 68, 'A0' => 95];
+$prices = ['A4' => 10, 'A3' => 15, 'A2' => 26, 'A1' => 40, 'A0' => 60];
 $orderLines = [];
 $total = 0;
 

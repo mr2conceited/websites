@@ -1,11 +1,11 @@
 const { randomUUID } = require('crypto');
 
 const prices = {
-  A4: 24,
-  A3: 34,
-  A2: 48,
-  A1: 68,
-  A0: 95
+  A4: 10,
+  A3: 15,
+  A2: 26,
+  A1: 40,
+  A0: 60
 };
 
 const json = (res, status, body) => {
