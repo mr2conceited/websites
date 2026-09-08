@@ -1096,7 +1096,7 @@
                     <p>With state-of-the-art facilities and a collaborative environment, we empower artists to explore new techniques and develop their unique voice.</p>
                 </div>
                 <div class="about-image">
-                    <img src="images/gallery-3114279.jpg" alt="Top Boy Studios interior">
+                    <img src="images/gallery-3114279.jpg" alt="Top Boy Studios interior" loading="lazy" decoding="async">
                 </div>
             </div>
         </div>
@@ -1274,7 +1274,7 @@
         const formatPrice = amount => `$${amount.toFixed(2)}`;
 
         productGrid.innerHTML = products.map(product => `<article class="product-card" data-product="${product.id}">
-            <div class="poster-visual"><img src="${product.image}" alt="${product.title} poster artwork"><div class="size-preview" data-size="A4"><div class="size-preview-label"><span>Scale preview</span><span class="preview-size">A4</span></div><div class="size-preview-stage"><div class="size-preview-sheet"></div></div></div></div>
+            <div class="poster-visual"><img src="${product.image}" alt="${product.title} poster artwork" loading="lazy" decoding="async"><div class="size-preview" data-size="A4"><div class="size-preview-label"><span>Scale preview</span><span class="preview-size">A4</span></div><div class="size-preview-stage"><div class="size-preview-sheet"></div></div></div></div>
             <div class="product-card-body"><h3>${product.title}</h3><p class="product-meta">${product.category} · Signed studio edition</p>
             <div class="size-row">${Object.entries(sizes).map(([size, detail], index) => `<div class="size-option"><input type="radio" id="${product.id}-${size}" name="${product.id}-size" value="${size}" data-price="${detail.price}" ${index === 0 ? 'checked' : ''}><label for="${product.id}-${size}">${size}<small>${detail.dimensions}</small></label></div>`).join('')}</div>
             <div class="product-buy"><strong class="product-price">${formatPrice(sizes.A4.price)}</strong><button class="add-button" type="button" data-product="${product.id}">Add to bag</button></div></div>
