@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Top Boy Studios | Creative Art Studio</title>
+    <title>TopBoy Editions | Art Posters</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <style>
@@ -629,6 +629,12 @@
             box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
         }
 
+        .form-status {
+            color: var(--accent-light);
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
         /* Footer */
         footer {
             background-color: var(--primary);
@@ -877,6 +883,107 @@
             z-index: 1001;
         }
 
+        .close-menu {
+            display: none;
+        }
+
+        /* Storefront */
+        .cart-trigger { background: none; border: 0; color: var(--text); font-size: 1.1rem; cursor: pointer; position: relative; padding: 10px; }
+        .cart-trigger:hover { color: var(--accent); }
+        .cart-count { display: inline-grid; place-items: center; position: absolute; top: 0; right: 0; width: 18px; height: 18px; border-radius: 50%; background: var(--accent); color: var(--primary); font-size: .65rem; font-weight: 700; }
+        .eyebrow { color: var(--accent); font-size: .75rem; letter-spacing: 3px; font-weight: 700; }
+        .hero .eyebrow { opacity: 0; animation: fadeInUp 1s forwards .25s; }
+        .product-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
+        .product-card { min-width: 0; display: flex; flex-direction: column; background: #232323; border: 1px solid #333; padding-bottom: 22px; opacity: 0; transform: translateY(30px); }
+        .product-card-body { display: flex; flex: 1; flex-direction: column; }
+        .product-card.animate { animation: fadeInUp .8s forwards; }
+        .product-card:nth-child(2) { animation-delay: .12s; } .product-card:nth-child(3) { animation-delay: .24s; }
+        .product-card:nth-child(4) { animation-delay: .36s; } .product-card:nth-child(5) { animation-delay: .48s; } .product-card:nth-child(6) { animation-delay: .6s; }
+        .custom-card { background: #2a2421; border-color: var(--accent); }
+        .custom-card .poster-visual { aspect-ratio: 4 / 5; }
+        .custom-upload-visual { height: 100%; display: grid; place-items: center; background: repeating-linear-gradient(135deg, #29211f 0, #29211f 10px, #332826 10px, #332826 20px); }
+        .custom-upload-visual i { color: var(--accent); font-size: 2rem; }
+        .custom-upload-visual img { display: none; }
+        .custom-upload-visual:not(.has-image) img { display: none; }
+        .custom-upload-visual.has-image img { display: block; object-fit: contain; background: #f0e6d2; }
+        .custom-upload-visual.has-image i, .custom-upload-visual.has-image .upload-prompt { display: none; }
+        .custom-upload-visual i, .upload-prompt { position: relative; z-index: 1; }
+        .upload-prompt { text-align: center; color: var(--text-secondary); font-size: .8rem; margin-top: 8px; }
+        .custom-card .size-preview { max-width: none; }
+        .custom-controls { display: block; }
+        .upload-control { flex: 1; min-width: 220px; }
+        .upload-control label, .custom-size-label { display: block; font-size: .72rem; font-weight: 700; margin-bottom: 8px; }
+        .upload-input { width: 100%; padding: 11px; border: 1px dashed #777; color: var(--text-secondary); background: rgba(18,18,18,.45); cursor: pointer; }
+        .custom-size-row { margin-top: 18px; }
+        .custom-card .product-buy { margin-top: auto; padding-top: 18px; }
+        .custom-card .add-button:disabled { opacity: .45; cursor: not-allowed; }
+        .poster-visual { position: relative; aspect-ratio: 4 / 5; overflow: hidden; background: #111; }
+        .poster-visual::before { content: ''; position: absolute; z-index: 3; inset: 9px; pointer-events: none; border: 10px solid #fff; box-shadow: inset 0 0 0 2px #e6e6e6, inset 0 0 0 5px #fff, 0 4px 12px rgba(0,0,0,.55); }
+        .poster-visual::after { content: ''; position: absolute; z-index: 2; pointer-events: none; inset: 19px; border: 4px solid #fafafa; box-shadow: 0 0 0 1px rgba(0,0,0,.65); opacity: .95; }
+        .product-card img { position: absolute; z-index: 1; inset: 19px; width: calc(100% - 38px); height: calc(100% - 38px); object-fit: cover; display: block; transition: transform .6s ease, filter .6s ease; }
+        .product-card:hover img { transform: scale(1.04); filter: saturate(1.12); }
+        .product-card:not(.custom-card) { cursor: zoom-in; }
+        .product-card:not(.custom-card) button, .product-card:not(.custom-card) input, .product-card:not(.custom-card) label { cursor: pointer; }
+        .poster-lightbox { position: fixed; inset: 0; z-index: 1100; display: none; place-items: center; padding: 24px; background: rgba(0, 0, 0, .82); }
+        .poster-lightbox.open { display: grid; }
+        .poster-lightbox-visual { position: relative; width: min(70vw, 480px); max-height: 82vh; aspect-ratio: 4 / 5; overflow: hidden; background: #f0e6d2; box-shadow: 0 24px 70px rgba(0, 0, 0, .55); }
+        .poster-lightbox-visual::before { content: ''; position: absolute; z-index: 3; inset: 9px; pointer-events: none; border: 10px solid #fff; box-shadow: inset 0 0 0 2px #e6e6e6, inset 0 0 0 5px #fff, 0 4px 12px rgba(0, 0, 0, .55); }
+        .poster-lightbox-visual::after { content: ''; position: absolute; z-index: 2; pointer-events: none; inset: 19px; border: 4px solid #fafafa; box-shadow: 0 0 0 1px rgba(0, 0, 0, .65); opacity: .95; }
+        .poster-lightbox-visual img { position: absolute; z-index: 1; inset: 19px; width: calc(100% - 38px); height: calc(100% - 38px); object-fit: cover; display: block; }
+        .poster-lightbox-close { position: absolute; top: 18px; right: 22px; z-index: 2; width: 42px; height: 42px; border: 1px solid rgba(255, 255, 255, .4); background: rgba(18, 18, 18, .7); color: var(--text); cursor: pointer; font-size: 1.2rem; }
+        .poster-lightbox-close:hover { color: var(--accent); border-color: var(--accent); }
+        .size-preview { position: absolute; z-index: 4; left: 14px; right: 14px; bottom: 14px; height: 88px; padding: 10px 12px; background: rgba(18,18,18,.88); border: 1px solid rgba(255,255,255,.18); backdrop-filter: blur(5px); }
+        .size-preview-label { display: flex; justify-content: space-between; color: var(--text); font-size: .65rem; letter-spacing: 1px; text-transform: uppercase; }
+        .size-preview-label span { color: var(--accent); font-weight: 700; }
+        .size-preview-stage { height: 54px; display: flex; align-items: flex-end; justify-content: center; gap: 3px; margin-top: 5px; border-bottom: 1px solid #666; }
+        .size-preview-sheet { flex: 0 0 auto; width: 34px; height: 41px; background: #f0e6d2; border: 2px solid rgba(255,107,107,.8); transition: width .3s ease, height .3s ease, background .3s ease, transform .3s ease; transform-origin: bottom center; }
+        .size-preview-sheet::after { content: ''; display: block; width: 55%; height: 2px; margin: 10px auto; background: rgba(18,18,18,.28); box-shadow: 0 6px rgba(18,18,18,.18); }
+        .size-preview[data-size="A3"] .size-preview-sheet { width: 42px; height: 47px; }
+        .size-preview[data-size="A2"] .size-preview-sheet { width: 50px; height: 54px; }
+        .size-preview[data-size="A1"] .size-preview-sheet { width: 58px; height: 60px; }
+        .size-preview[data-size="A0"] .size-preview-sheet { width: 67px; height: 66px; }
+        .size-option label:hover { transform: translateY(-2px); }
+        .product-card-body { padding: 18px 20px 0; }
+        .product-card h3 { font-family: 'Playfair Display', serif; font-size: 1.45rem; margin-bottom: 4px; }
+        .product-meta { color: var(--text-secondary); font-size: .78rem; margin-bottom: 16px; }
+        .size-row { display: flex; gap: 5px; margin-bottom: 16px; }
+        .size-option { flex: 1; position: relative; }
+        .size-option input { position: absolute; opacity: 0; }
+        .size-option label { border: 1px solid #444; color: var(--text-secondary); display: block; text-align: center; padding: 8px 2px; font-size: .7rem; cursor: pointer; }
+        .size-option input:checked + label, .size-option label:hover { border-color: var(--accent); color: var(--text); background: rgba(255,107,107,.1); }
+        .size-option small { display: block; font-size: .5rem; opacity: .7; }
+        .product-buy { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-top: auto; }
+        .product-price { font-size: 1.1rem; font-weight: 700; }
+        .add-button { background: var(--accent); border: 0; color: var(--primary); cursor: pointer; font-weight: 700; padding: 11px 13px; }
+        .add-button:hover { background: var(--accent-light); }
+        .checkout-intro { flex: 1; padding-top: 20px; }
+        .checkout-intro h3 { font-family: 'Playfair Display', serif; font-size: 2.2rem; margin-bottom: 15px; color: var(--accent); }
+        .checkout-intro p { color: var(--text-secondary); max-width: 350px; }
+        .text-link { background: none; border: 0; color: var(--text); cursor: pointer; margin-top: 25px; padding: 0; font-weight: 700; }
+        .text-link:hover { color: var(--accent); }
+        .checkout-total { border-top: 1px solid #444; display: flex; justify-content: space-between; padding: 18px 0; margin-bottom: 18px; }
+        .checkout-total strong { color: var(--accent); font-size: 1.3rem; }
+        .form-group label span { color: var(--text-secondary); font-weight: 400; }
+        .cart-drawer { position: fixed; z-index: 1100; top: 0; right: 0; width: min(420px, 100%); height: 100vh; padding: 30px; background: #202020; box-shadow: -10px 0 40px rgba(0,0,0,.5); transform: translateX(100%); transition: transform .35s ease; overflow-y: auto; }
+        .cart-drawer.open { transform: translateX(0); }
+        .cart-head { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #444; padding-bottom: 20px; margin-bottom: 20px; }
+        .cart-head h2 { font-family: 'Playfair Display', serif; }
+        .cart-close { background: none; border: 0; color: var(--text); cursor: pointer; font-size: 1.2rem; }
+        .cart-line { display: grid; grid-template-columns: 62px 1fr auto; gap: 12px; align-items: center; border-bottom: 1px solid #333; padding: 12px 0; }
+        .cart-line img { width: 62px; height: 75px; object-fit: cover; }
+        .cart-line h4 { font-size: .9rem; }
+        .cart-line p { color: var(--text-secondary); font-size: .75rem; }
+        .quantity-control { display: flex; align-items: center; gap: 8px; margin-top: 8px; }
+        .quantity-control button { border: 1px solid #555; background: none; color: var(--text); width: 22px; height: 22px; cursor: pointer; }
+        .cart-empty { color: var(--text-secondary); padding: 30px 0; }
+        .cart-summary { border-top: 1px solid #444; margin-top: 25px; padding-top: 20px; }
+        .cart-summary > div { display: flex; justify-content: space-between; margin-bottom: 18px; }
+        .cart-summary .btn { display: block; text-align: center; width: 100%; }
+        .cart-overlay { position: fixed; inset: 0; background: rgba(0,0,0,.55); z-index: 1050; display: none; }
+        .cart-overlay.open { display: block; }
+        @media (max-width: 768px) { .cart-trigger { margin-left: auto; margin-right: 16px; } .product-grid { grid-template-columns: repeat(2, 1fr); } .custom-size-row { min-width: 0; } }
+        @media (max-width: 480px) { .product-grid { grid-template-columns: minmax(0, 1fr); } .size-row { min-width: 0; } .checkout-section .contact-form { transform: none; } .checkout-section .contact-form.animate { animation: fadeInUp 1s forwards .3s; } .cart-drawer { padding: 24px 18px; } }
+
         @media (max-width: 768px) {
             .mobile-menu-btn {
                 display: block;
@@ -910,6 +1017,7 @@
             }
             
             .close-menu {
+                display: block;
                 position: absolute;
                 top: 25px;
                 right: 25px;
@@ -931,12 +1039,13 @@
                 <div class="logo">TopBoy <span>Studios</span></div>
                 <ul class="nav-links">
                     <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#gallery">Gallery</a></li>
-                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="#shop">Shop</a></li>
+                    <li><a href="#checkout">Checkout</a></li>
                 </ul>
-                <button class="mobile-menu-btn">
+                <button class="cart-trigger" type="button" aria-label="Open shopping cart" aria-expanded="false">
+                    <i class="fas fa-bag-shopping"></i><span class="cart-count">0</span>
+                </button>
+                <button class="mobile-menu-btn" type="button" aria-label="Open navigation menu" aria-expanded="false">
                     <i class="fas fa-bars"></i>
                 </button>
             </nav>
@@ -953,9 +1062,22 @@
             <div class="shape"></div>
         </div>
         <div class="hero-content">
-            <h1>Where Creativity Meets Innovation</h1>
-            <p>Top Boy Studios is a premier creative space where artists and visionaries come together to push boundaries and create extraordinary work.</p>
-            <a href="#contact" class="btn">Start Your Project</a>
+            <p class="eyebrow">LIMITED STUDIO EDITIONS</p>
+            <h1>Art for walls with a pulse.</h1>
+            <p>Gallery-grade poster prints made in small batches, bringing the raw energy of TopBoy Studios into your space.</p>
+            <a href="#shop" class="btn">Shop the collection <i class="fas fa-arrow-right"></i></a>
+        </div>
+    </section>
+
+    <!-- Shop Section -->
+    <section id="shop" class="services shop-section">
+        <div class="container">
+            <div class="section-title">
+                <p class="eyebrow">THE CURRENT DROP</p>
+                <h2>Posters for considered spaces.</h2>
+                <p>Choose a work, then find the scale that fits your wall. Every print is made to order.</p>
+            </div>
+            <div class="product-grid" id="product-grid"></div>
         </div>
     </section>
 
@@ -980,147 +1102,18 @@
         </div>
     </section>
 
-    <!-- Services Section -->
-    <section id="services" class="services">
+    <!-- Checkout Section -->
+    <section id="checkout" class="contact checkout-section">
         <div class="container">
             <div class="section-title">
-                <h2>Our Services</h2>
-                <p>Comprehensive creative services to bring your vision to life</p>
-            </div>
-            <div class="services-container">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-palette"></i>
-                    </div>
-                    <h3>Fine Art Production</h3>
-                    <p>From concept to completion, we help artists create stunning works across various mediums and styles.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-desktop"></i>
-                    </div>
-                    <h3>Digital Art & Design</h3>
-                    <p>Cutting-edge digital creation including illustration, graphic design, and multimedia art.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-cube"></i>
-                    </div>
-                    <h3>3D Modeling & Sculpture</h3>
-                    <p>Bring your ideas into three dimensions with our advanced 3D printing and sculpting capabilities.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <i class="fas fa-music"></i>
-                    </div>
-                    <h3>Music Production</h3>
-                    <p>Professional recording, mixing, and mastering services in our state-of-the-art studio.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery">
-        <div class="container">
-            <div class="section-title">
-                <h2>Our Gallery</h2>
-                <p>Explore a selection of works created at Top Boy Studios</p>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item">
-                    <img src="images/art-905739.jpg" alt="Abstract painting">
-                    <div class="gallery-overlay">
-                        <h3>Abstract Expressions</h3>
-                        <p>Mixed media on canvas</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/photoshop-6893378.jpg" alt="Digital artwork">
-                    <div class="gallery-overlay">
-                        <h3>Digital Dreams</h3>
-                        <p>Digital illustration</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/hands-sculpture-6981662_1280.jpg" alt="Sculpture">
-                    <div class="gallery-overlay">
-                        <h3>Form & Space</h3>
-                        <p>Bronze sculpture</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/montmartre-239153.jpg" alt="Portrait painting">
-                    <div class="gallery-overlay">
-                        <h3>Human Essence</h3>
-                        <p>Oil on canvas</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/graffiti-1633399_1920.jpg" alt="Street art">
-                    <div class="gallery-overlay">
-                        <h3>Urban Voices</h3>
-                        <p>Spray paint mural</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/under-water-1819584.jpg" alt="Concept art">
-                    <div class="gallery-overlay">
-                        <h3>Future Visions</h3>
-                        <p>Digital concept art</p>
-                    </div>
-                </div>
-                <!-- Music Production Gallery Items -->
-                <div class="gallery-item">
-                    <img src="images/recording-studio-1869560_1920.jpg" alt="Recording studio">
-                    <div class="gallery-overlay">
-                        <h3>Studio Sessions</h3>
-                        <p>Professional recording environment</p>
-                    </div>
-                </div>
-                <div class="gallery-item">
-                    <img src="images/studio-4004849.jpg" alt="Mixing console">
-                    <div class="gallery-overlay">
-                        <h3>Sound Engineering</h3>
-                        <p>Precision mixing and mastering</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact">
-        <div class="container">
-            <div class="section-title">
-                <h2>Get In Touch</h2>
-                <p>Ready to start your next creative project? Contact us today</p>
+                <p class="eyebrow">READY WHEN YOU ARE</p>
+                <h2>Finish your order.</h2>
+                <p>We will confirm your print and send a secure payment link by email.</p>
             </div>
             <div class="contact-container">
-                <div class="contact-info">
-                    <h3>Visit Our Studio</h3>
-                    <p>We welcome visitors to experience our creative space firsthand. Schedule a tour to see our facilities and meet our team of artists.</p>
-                    <div class="contact-details">
-                        <div class="contact-detail">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <p>123 Creative District, Artsville, AV 12345</p>
-                        </div>
-                        <div class="contact-detail">
-                            <i class="fas fa-phone"></i>
-                            <p>+1 (555) 123-4567</p>
-                        </div>
-                        <div class="contact-detail">
-                            <i class="fas fa-envelope"></i>
-                            <p>info@topboystudios.com</p>
-                        </div>
-                        <div class="contact-detail">
-                            <i class="fas fa-clock"></i>
-                            <p>Mon - Sat: 9am - 8pm</p>
-                        </div>
-                    </div>
-                </div>
+                <div class="checkout-intro"><h3>Your walls, reimagined.</h3><p>Build your basket from the collection above. Orders are produced in the studio within 3-5 working days.</p><button class="text-link" type="button" data-open-cart>Review your bag <i class="fas fa-arrow-right"></i></button></div>
                 <div class="contact-form">
-                    <form>
+                    <form id="checkout-form">
                         <div class="form-group">
                             <label for="name">Full Name</label>
                             <input type="text" id="name" name="name" required>
@@ -1130,21 +1123,16 @@
                             <input type="email" id="email" name="email" required>
                         </div>
                         <div class="form-group">
-                            <label for="service">Service Interest</label>
-                            <select id="service" name="service">
-                                <option value="" selected>Select a service</option>
-                                <option value="fine-art">Fine Art Production</option>
-                                <option value="digital">Digital Art & Design</option>
-                                <option value="3d">3D Modeling & Sculpture</option>
-                                <option value="music">Music Production</option>
-                                <option value="other">Other</option>
-                            </select>
+                            <label for="address">Shipping address</label>
+                            <input type="text" id="address" name="address" required>
                         </div>
                         <div class="form-group">
-                            <label for="message">Project Details</label>
-                            <textarea id="message" name="message" rows="5" required></textarea>
+                            <label for="message">Order note <span>(optional)</span></label>
+                            <textarea id="message" name="message" rows="3"></textarea>
                         </div>
-                        <button type="submit" class="btn">Send Message</button>
+                        <div class="checkout-total"><span>Order total</span><strong id="checkout-total">$0.00</strong></div>
+                        <button type="submit" class="btn">Place order <i class="fas fa-arrow-right"></i></button>
+                        <p class="form-status" role="status" aria-live="polite"></p>
                     </form>
                 </div>
             </div>
@@ -1159,27 +1147,22 @@
                     <h3>Top Boy Studios</h3>
                     <p>Where creativity meets innovation. A premier space for artists to create, collaborate, and inspire.</p>
                     <div class="social-icons">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.facebook.com/" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
                 <div class="footer-column">
                     <h3>Quick Links</h3>
                     <a href="#home">Home</a>
-                    <a href="#about">About</a>
-                    <a href="#services">Services</a>
-                    <a href="#gallery">Gallery</a>
-                    <a href="#contact">Contact</a>
+                    <a href="#shop">Shop</a>
+                    <a href="#checkout">Checkout</a>
                 </div>
                 <div class="footer-column">
-                    <h3>Services</h3>
-                    <a href="#">Fine Art Production</a>
-                    <a href="#">Digital Art & Design</a>
-                    <a href="#">3D Modeling</a>
-                    <a href="#">Music Production</a>
-                    <a href="#">Art Consulting</a>
+                    <h3>Print details</h3>
+                    <a href="#shop">Shop all posters</a>
+                    <a href="#checkout">Order support</a>
                 </div>
             </div>
             <div class="copyright">
@@ -1187,6 +1170,18 @@
             </div>
         </div>
     </footer>
+
+    <div class="cart-overlay" data-close-cart></div>
+    <aside class="cart-drawer" aria-label="Shopping cart" aria-hidden="true">
+        <div class="cart-head"><h2>Your bag</h2><button class="cart-close" type="button" aria-label="Close shopping cart" data-close-cart><i class="fas fa-times"></i></button></div>
+        <div id="cart-items"></div>
+        <div class="cart-summary"><div><span>Subtotal</span><strong id="cart-total">$0.00</strong></div><a class="btn" href="#checkout" data-go-checkout>Go to checkout <i class="fas fa-arrow-right"></i></a></div>
+    </aside>
+
+    <div class="poster-lightbox" id="poster-lightbox" role="dialog" aria-modal="true" aria-label="Expanded poster view" aria-hidden="true">
+        <button class="poster-lightbox-close" type="button" aria-label="Close expanded poster view"><i class="fas fa-times"></i></button>
+        <div class="poster-lightbox-visual"><img alt=""></div>
+    </div>
 
     <script>
         // Mobile menu functionality
@@ -1196,16 +1191,20 @@
         // Create close button dynamically
         const closeMenu = document.createElement('button');
         closeMenu.classList.add('close-menu');
+        closeMenu.type = 'button';
+        closeMenu.setAttribute('aria-label', 'Close navigation menu');
         closeMenu.innerHTML = '<i class="fas fa-times"></i>';
         navLinks.appendChild(closeMenu);
 
         mobileMenuBtn.addEventListener('click', () => {
             navLinks.classList.add('active');
+            mobileMenuBtn.setAttribute('aria-expanded', 'true');
             document.body.style.overflow = 'hidden'; // Prevent scrolling when menu is open
         });
 
         closeMenu.addEventListener('click', () => {
             navLinks.classList.remove('active');
+            mobileMenuBtn.setAttribute('aria-expanded', 'false');
             document.body.style.overflow = 'auto'; // Restore scrolling
         });
 
@@ -1213,6 +1212,7 @@
         document.querySelectorAll('.nav-links a').forEach(link => {
             link.addEventListener('click', () => {
                 navLinks.classList.remove('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
                 document.body.style.overflow = 'auto'; // Restore scrolling
             });
         });
@@ -1221,6 +1221,7 @@
         document.addEventListener('click', (e) => {
             if (!navLinks.contains(e.target) && !mobileMenuBtn.contains(e.target) && navLinks.classList.contains('active')) {
                 navLinks.classList.remove('active');
+                mobileMenuBtn.setAttribute('aria-expanded', 'false');
                 document.body.style.overflow = 'auto'; // Restore scrolling
             }
         });
@@ -1247,17 +1248,78 @@
                     });
                     // Close mobile menu if open
                     navLinks.classList.remove('active');
+                    mobileMenuBtn.setAttribute('aria-expanded', 'false');
                     document.body.style.overflow = 'auto'; // Restore scrolling
                 }
             });
         });
 
-        // Form submission
-        document.querySelector('.contact-form form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Thank you for your message! We will get back to you soon.');
-            this.reset();
-        });
+        const sizes = {
+            A4: { dimensions: '210 x 297 mm', price: 24 },
+            A3: { dimensions: '297 x 420 mm', price: 34 },
+            A2: { dimensions: '420 x 594 mm', price: 48 },
+            A1: { dimensions: '594 x 841 mm', price: 68 },
+            A0: { dimensions: '841 x 1189 mm', price: 95 }
+        };
+        const products = [
+            { id: 'the-melodic-blue', title: 'The Melodic Blue', category: 'Album poster', image: 'images/albums/Baby Keem Poster - The Melodic Blue Poster.jpg' },
+            { id: 'damn', title: 'DAMN.', category: 'Album poster', image: 'images/albums/Damn_ Poster.jpg' },
+            { id: 'kod', title: 'KOD', category: 'Album poster', image: 'images/albums/download.jpg' },
+            { id: 'blonde', title: 'Blonde', category: 'Album poster', image: 'images/albums/frank ocean.jpg' },
+            { id: 'flower-boy', title: 'Flower Boy', category: 'Album poster', image: 'images/albums/Poster of Tyler the creator - FLOWER BOY.jpg' },
+            { id: 'alone-at-prom', title: 'Alone At Prom', category: 'Album poster', image: 'images/albums/Tory Lanez Poster - Alone At Prom Poster.jpg' }
+        ];
+        let cart = JSON.parse(localStorage.getItem('topboy-cart') || '[]');
+        const productGrid = document.querySelector('#product-grid');
+        const formatPrice = amount => `$${amount.toFixed(2)}`;
+
+        productGrid.innerHTML = products.map(product => `<article class="product-card" data-product="${product.id}">
+            <div class="poster-visual"><img src="${product.image}" alt="${product.title} poster artwork"><div class="size-preview" data-size="A4"><div class="size-preview-label"><span>Scale preview</span><span class="preview-size">A4</span></div><div class="size-preview-stage"><div class="size-preview-sheet"></div></div></div></div>
+            <div class="product-card-body"><h3>${product.title}</h3><p class="product-meta">${product.category} · Signed studio edition</p>
+            <div class="size-row">${Object.entries(sizes).map(([size, detail], index) => `<div class="size-option"><input type="radio" id="${product.id}-${size}" name="${product.id}-size" value="${size}" data-price="${detail.price}" ${index === 0 ? 'checked' : ''}><label for="${product.id}-${size}">${size}<small>${detail.dimensions}</small></label></div>`).join('')}</div>
+            <div class="product-buy"><strong class="product-price">${formatPrice(sizes.A4.price)}</strong><button class="add-button" type="button" data-product="${product.id}">Add to bag</button></div></div>
+        </article>`).join('');
+        productGrid.insertAdjacentHTML('beforeend', `<article class="custom-card product-card">
+            <div class="poster-visual custom-upload-visual" id="custom-upload-visual"><i class="fas fa-cloud-arrow-up"></i><div class="upload-prompt">Your image preview appears here</div><img id="custom-image-preview" alt="Your custom poster preview"><div class="size-preview" data-size="A4"><div class="size-preview-label"><span>Scale preview</span><span class="preview-size">A4</span></div><div class="size-preview-stage"><div class="size-preview-sheet"></div></div></div></div>
+            <div class="product-card-body"><h3>Make it yours</h3><p class="product-meta">Upload your artwork and choose its print scale.</p><div class="custom-controls"><div class="upload-control"><label for="custom-image">Choose an image</label><input class="upload-input" type="file" id="custom-image" accept="image/jpeg,image/png,image/webp"></div><div class="custom-size-row"><span class="custom-size-label">Choose a size</span><div class="size-row">${Object.entries(sizes).map(([size, detail], index) => `<div class="size-option"><input type="radio" id="custom-${size}" name="custom-size" value="${size}" data-price="${detail.price}" ${index === 0 ? 'checked' : ''}><label for="custom-${size}">${size}<small>${detail.dimensions}</small></label></div>`).join('')}</div></div></div><div class="product-buy"><strong class="product-price" id="custom-price">${formatPrice(sizes.A4.price)}</strong><button class="add-button" id="custom-add" type="button" disabled>Add custom print</button></div></div>
+        </article>`);
+
+        const cartDrawer = document.querySelector('.cart-drawer');
+        const cartOverlay = document.querySelector('.cart-overlay');
+        const posterLightbox = document.querySelector('#poster-lightbox');
+        const posterLightboxImage = posterLightbox.querySelector('img');
+        const closePosterLightbox = () => { posterLightbox.classList.remove('open'); posterLightbox.setAttribute('aria-hidden', 'true'); };
+        const openPosterLightbox = product => { posterLightboxImage.src = product.image; posterLightboxImage.alt = `${product.title} poster artwork`; posterLightbox.classList.add('open'); posterLightbox.setAttribute('aria-hidden', 'false'); posterLightbox.querySelector('button').focus(); };
+        posterLightbox.addEventListener('click', event => { if (event.target === posterLightbox || event.target.closest('.poster-lightbox-close')) closePosterLightbox(); });
+        document.addEventListener('keydown', event => { if (event.key === 'Escape' && posterLightbox.classList.contains('open')) closePosterLightbox(); });
+        const updateCart = () => {
+            localStorage.setItem('topboy-cart', JSON.stringify(cart));
+            const itemCount = cart.reduce((total, item) => total + item.quantity, 0);
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            document.querySelector('.cart-count').textContent = itemCount;
+            document.querySelector('#cart-total').textContent = formatPrice(total);
+            document.querySelector('#checkout-total').textContent = formatPrice(total);
+            document.querySelector('#cart-items').innerHTML = cart.length ? cart.map((item, index) => `<div class="cart-line"><img src="${item.image}" alt=""><div><h4>${item.title}</h4><p>${item.size} · ${item.dimensions} · ${formatPrice(item.price)}</p><div class="quantity-control"><button type="button" data-cart-action="decrease" data-index="${index}" aria-label="Decrease quantity">−</button><span>${item.quantity}</span><button type="button" data-cart-action="increase" data-index="${index}" aria-label="Increase quantity">+</button><button type="button" data-cart-action="remove" data-index="${index}" aria-label="Remove item"><i class="fas fa-trash"></i></button></div></div><strong>${formatPrice(item.price * item.quantity)}</strong></div>`).join('') : '<p class="cart-empty">Your bag is waiting for something good.</p>';
+        };
+        const toggleCart = open => { cartDrawer.classList.toggle('open', open); cartOverlay.classList.toggle('open', open); cartDrawer.setAttribute('aria-hidden', String(!open)); document.querySelector('.cart-trigger').setAttribute('aria-expanded', String(open)); };
+        document.querySelector('.cart-trigger').addEventListener('click', () => toggleCart(true));
+        document.querySelectorAll('[data-close-cart]').forEach(button => button.addEventListener('click', () => toggleCart(false)));
+        document.querySelector('[data-open-cart]').addEventListener('click', () => toggleCart(true));
+        document.querySelector('[data-go-checkout]').addEventListener('click', () => toggleCart(false));
+        const updatePreview = (card, size) => { card.querySelector('.size-preview').dataset.size = size; card.querySelector('.preview-size').textContent = size; };
+        productGrid.addEventListener('change', event => { if (event.target.matches('input[type="radio"]')) { const card = event.target.closest('.product-card'); card.querySelector('.product-price').textContent = formatPrice(Number(event.target.dataset.price)); updatePreview(card, event.target.value); } });
+        productGrid.addEventListener('mouseover', event => { const label = event.target.closest('.size-option'); if (label) updatePreview(label.closest('.product-card'), label.querySelector('input').value); });
+        productGrid.addEventListener('mouseout', event => { const label = event.target.closest('.size-option'); if (label && !label.contains(event.relatedTarget)) updatePreview(label.closest('.product-card'), label.closest('.size-row').querySelector('input:checked').value); });
+        productGrid.addEventListener('click', event => { const card = event.target.closest('.product-card:not(.custom-card)'); if (card && !event.target.closest('button, input, label, .size-row')) { openPosterLightbox(products.find(item => item.id === card.dataset.product)); return; } const button = event.target.closest('.add-button[data-product]'); if (!button) return; const product = products.find(item => item.id === button.dataset.product); const size = productGrid.querySelector(`input[name="${product.id}-size"]:checked`).value; const detail = sizes[size]; const existing = cart.find(item => item.productId === product.id && item.size === size); if (existing) existing.quantity += 1; else cart.push({ productId: product.id, title: product.title, image: product.image, size, dimensions: detail.dimensions, price: detail.price, quantity: 1 }); updateCart(); toggleCart(true); });
+        let customImageData = '';
+        let customFileName = '';
+        const customCard = document.querySelector('.custom-card');
+        const customImageInput = document.querySelector('#custom-image');
+        customImageInput.addEventListener('change', event => { const file = event.target.files[0]; if (!file) return; if (!file.type.startsWith('image/')) { event.target.value = ''; return; } customFileName = file.name; const reader = new FileReader(); reader.addEventListener('load', () => { customImageData = reader.result; document.querySelector('#custom-image-preview').src = customImageData; document.querySelector('#custom-upload-visual').classList.add('has-image'); document.querySelector('#custom-add').disabled = false; }); reader.readAsDataURL(file); });
+        document.querySelector('#custom-add').addEventListener('click', () => { const size = document.querySelector('input[name="custom-size"]:checked').value; const detail = sizes[size]; const customId = `custom-${customFileName}-${size}`; const existing = cart.find(item => item.productId === customId); if (existing) existing.quantity += 1; else cart.push({ productId: customId, title: `Custom print (${customFileName})`, image: customImageData, size, dimensions: detail.dimensions, price: detail.price, quantity: 1 }); updateCart(); toggleCart(true); });
+        document.querySelector('#cart-items').addEventListener('click', event => { const button = event.target.closest('[data-cart-action]'); if (!button) return; const item = cart[Number(button.dataset.index)]; if (button.dataset.cartAction === 'remove') cart.splice(Number(button.dataset.index), 1); else item.quantity += button.dataset.cartAction === 'increase' ? 1 : -1; cart = cart.filter(line => line.quantity > 0); updateCart(); });
+        document.querySelector('#checkout-form').addEventListener('submit', async function(e) { e.preventDefault(); const status = this.querySelector('.form-status'); const submitButton = this.querySelector('button[type="submit"]'); if (!cart.length) { status.textContent = 'Add a poster to your bag before checking out.'; document.querySelector('#shop').scrollIntoView({ behavior: 'smooth' }); return; } submitButton.disabled = true; status.textContent = 'Sending your order...'; try { const response = await fetch('order.php', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ name: this.name.value, email: this.email.value, address: this.address.value, note: this.message.value, items: cart.map(item => ({ title: item.title, size: item.size, quantity: item.quantity })) }) }); const responseText = await response.text(); let result; try { result = JSON.parse(responseText); } catch (parseError) { throw new Error('Email service unavailable. Open this site through a PHP server.'); } if (!response.ok || !result.success) throw new Error(result.message || 'Order submission failed.'); status.textContent = `Order ${result.orderNumber} received. We will email your secure payment link shortly.`; cart = []; updateCart(); this.reset(); } catch (error) { status.textContent = `${error.message} Please try again or email orders@topboystudios.com.`; } finally { submitButton.disabled = false; } });
+        updateCart();
 
         // Scroll animation
         const observerOptions = {
@@ -1274,20 +1336,8 @@
         }, observerOptions);
 
         // Observe elements for animation
-        document.querySelectorAll('.section-title, .about-content, .service-card, .gallery-item, .contact-info, .contact-form').forEach(el => {
+        document.querySelectorAll('.section-title, .about-content, .service-card, .gallery-item, .product-card, .contact-info, .checkout-intro, .contact-form').forEach(el => {
             observer.observe(el);
-        });
-
-        // Add some interactive elements
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-15px)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                if (!this.classList.contains('animate')) return;
-                this.style.transform = 'translateY(0)';
-            });
         });
 
         // Add floating effect to hero shapes on mousemove
