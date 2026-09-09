@@ -47,13 +47,14 @@ const parseBody = (req) => new Promise((resolve, reject) => {
   req.on('error', reject);
 });
 
-const buildOrderText = ({ orderNumber, name, email, address, note, orderLines, total }) => {
+const buildOrderText = ({ orderNumber, name, email, phone, address, note, orderLines, total }) => {
   const lines = [
     'New poster order',
     '',
     `Order: ${orderNumber}`,
     `Name: ${name}`,
     `Email: ${email}`,
+    `Phone: ${phone}`,
     `Shipping address: ${address}`,
     '',
     'Items:',
@@ -72,12 +73,13 @@ const buildOrderText = ({ orderNumber, name, email, address, note, orderLines, t
 const validateOrderPayload = (payload) => {
   const name = cleanText(payload.name, 120);
   const email = cleanText(payload.email, 254);
+  const phone = cleanText(payload.phone, 40);
   const address = cleanText(payload.address, 500);
   const note = cleanText(payload.note, 1000);
   const items = Array.isArray(payload.items) ? payload.items : [];
 
-  if (!name || !address || !/^\S+@\S+\.\S+$/.test(email) || items.length === 0 || items.length > 50) {
-    return { error: 'Please provide valid customer details and at least one poster.' };
+  if (!name || !phone || !address || !/^\S+@\S+\.\S+$/.test(email) || items.length === 0 || items.length > 50) {
+    return { error: 'Please provide your name, email, phone, shipping address, and at least one poster.' };
   }
 
   const orderLines = [];
@@ -97,10 +99,10 @@ const validateOrderPayload = (payload) => {
     orderLines.push(`${title} | ${size} | Qty ${quantity} | $${lineTotal.toFixed(2)}`);
   }
 
-  return { name, email, address, note, items, total, orderLines };
+  return { name, email, phone, address, note, items, total, orderLines };
 };
 
-const sendOrderEmail = async ({ name, email, address, note, orderLines, total }) => {
+const sendOrderEmail = async ({ name, email, phone, address, note, orderLines, total }) => {
   const {
     SMTP_HOST,
     SMTP_PORT,
@@ -122,6 +124,9 @@ const sendOrderEmail = async ({ name, email, address, note, orderLines, total })
     host: SMTP_HOST,
     port: Number(SMTP_PORT || 587),
     secure: String(SMTP_SECURE || 'false').toLowerCase() === 'true',
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 15000,
     auth: {
       user: SMTP_USER,
       pass: SMTP_PASS
@@ -129,7 +134,7 @@ const sendOrderEmail = async ({ name, email, address, note, orderLines, total })
   });
 
   const orderNumber = `TB-${randomUUID().replace(/-/g, '').slice(0, 8).toUpperCase()}`;
-  const text = buildOrderText({ orderNumber, name, email, address, note, orderLines, total });
+  const text = buildOrderText({ orderNumber, name, email, phone, address, note, orderLines, total });
 
   await transporter.sendMail({
     from: sender,

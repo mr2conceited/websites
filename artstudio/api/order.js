@@ -52,12 +52,13 @@ module.exports = async function handler(req, res) {
 
   const name = cleanText(payload.name, 120);
   const email = cleanText(payload.email, 254);
+  const phone = cleanText(payload.phone, 40);
   const address = cleanText(payload.address, 500);
   const note = cleanText(payload.note, 1000);
   const items = Array.isArray(payload.items) ? payload.items : [];
 
-  if (!name || !address || !/^\S+@\S+\.\S+$/.test(email) || items.length === 0 || items.length > 50) {
-    return json(res, 422, { success: false, message: 'Please provide valid customer details and at least one poster.' });
+  if (!name || !phone || !address || !/^\S+@\S+\.\S+$/.test(email) || items.length === 0 || items.length > 50) {
+    return json(res, 422, { success: false, message: 'Please provide your name, email, phone, shipping address, and at least one poster.' });
   }
 
   const orderLines = [];
@@ -84,6 +85,7 @@ module.exports = async function handler(req, res) {
     `Order: ${orderNumber}`,
     `Name: ${name}`,
     `Email: ${email}`,
+    `Phone: ${phone}`,
     `Shipping address: ${address}`,
     '',
     'Items:',
@@ -97,6 +99,9 @@ module.exports = async function handler(req, res) {
     host: SMTP_HOST,
     port: Number(SMTP_PORT || 587),
     secure: String(SMTP_SECURE || 'false').toLowerCase() === 'true',
+    connectionTimeout: 10000,
+    greetingTimeout: 10000,
+    socketTimeout: 15000,
     auth: {
       user: SMTP_USER,
       pass: SMTP_PASS
@@ -120,4 +125,4 @@ module.exports = async function handler(req, res) {
   }
 
   return json(res, 200, { success: true, orderNumber });
-}
+};
