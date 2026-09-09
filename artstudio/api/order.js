@@ -1,4 +1,5 @@
 const { randomUUID } = require('crypto');
+require('dotenv').config();
 const nodemailer = require('nodemailer');
 
 const prices = {

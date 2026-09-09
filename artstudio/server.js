@@ -2,6 +2,7 @@ const http = require('http');
 const fs = require('fs');
 const path = require('path');
 const { randomUUID } = require('crypto');
+require('dotenv').config();
 const nodemailer = require('nodemailer');
 
 const PORT = Number(process.env.PORT || 3000);
