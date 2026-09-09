@@ -224,7 +224,12 @@ const server = http.createServer((req, res) => {
   }
 
   const requestedPath = url.pathname === '/' ? '/index.html' : url.pathname;
-  serveFile(res, `.${requestedPath}`);
+  try {
+    serveFile(res, `.${decodeURIComponent(requestedPath)}`);
+  } catch (error) {
+    res.statusCode = 400;
+    res.end('Bad Request');
+  }
 });
 
 if (require.main === module) {
