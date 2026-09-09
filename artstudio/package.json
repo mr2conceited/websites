@@ -1,0 +1,18 @@
+{
+  "name": "artstudio",
+  "private": true,
+  "version": "1.0.0",
+  "description": "ArtStudio site and order email backend",
+  "main": "api/order.js",
+  "scripts": {
+    "test:order": "node -e \"const handler=require('./api/order.js'); global.fetch=async()=>({ok:true,json:async()=>({id:'sent'})}); process.env.SMTP_HOST='smtp.gmail.com'; process.env.SMTP_PORT='587'; process.env.SMTP_USER='brooklynwangson@gmail.com'; process.env.SMTP_PASS='app-password'; process.env.ORDER_EMAIL='brooklynwangson@gmail.com'; process.env.ORDER_FROM_EMAIL='brooklynwangson@gmail.com'; const req={method:'POST',body:JSON.stringify({name:'Jane Doe',email:'jane@example.com',address:'123 Main St',note:'Rush order',items:[{title:'Test Poster',size:'A4',quantity:2}]})}; const res={statusCode:200,headers:{}, setHeader(n,v){this.headers[n]=v;}, status(code){this.statusCode=code; return this;}, json(body){this.body=body; return this;}}; handler(req,res).then(()=>{console.log('status=' + res.statusCode); console.log('success=' + !!res.body?.success); console.log('order=' + (res.body?.orderNumber || 'n/a'));}).catch(err=>{console.error(err); process.exit(1);});\"",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "nodemailer": "^7.0.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs"
+}
